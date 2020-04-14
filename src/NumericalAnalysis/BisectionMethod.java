@@ -5,9 +5,10 @@ package NumericalAnalysis;
  * */
 
 public class BisectionMethod {
-    private double endpointA, endpointB;
+    private double endpointA, endpointB, A, B;
     private double tolerance;
     private int N;
+    String theFunction;
 
     private Double root;
     /**
@@ -17,13 +18,14 @@ public class BisectionMethod {
      * @param n number of iterations so method doesnt run forever.
      * */
     public BisectionMethod(double a, double b, double tol, int n){
-        endpointA = a;
-        endpointB = b;
+        endpointA = a; A = endpointA;
+        endpointB = b; B = endpointB;
         tolerance = tol;
         N = n;
+        theFunction = "f(x) = x^2 - 3x - 4"; //doesn't change actual function, for appearance only!
 
         findRoot();
-
+        System.out.println(this);
     }
     public BisectionMethod(int a, int b, double tol, int n){
         new BisectionMethod((double)a, (double)b, tol, n);
@@ -41,7 +43,7 @@ public class BisectionMethod {
 
             if (Double.compare(Fr, 0) == 0 || ((endpointB - endpointA)/2.0) < tolerance){
                 root = tempRoot;
-                System.out.println(root);
+                //System.out.println(root);
                 break;
             }
 
@@ -60,9 +62,24 @@ public class BisectionMethod {
     }
 
     //f method f is a function
-    public double f(double x){ return x*x - 3*x - 4; }
+    public double f(double x){
+        return x*x - 3*x - 4;
+    }
+
+    @Override
+    public String toString(){
+        String temp = "The root of the function: " + theFunction + "\n" +
+                "between endpoints A = " + A + " and endpoint B = " + B + " is:" +
+                " " + root;
+        return temp;
+    }
 
     public static void main(String[] args) {
-        new BisectionMethod(2.1, 15.5, 0.000000001, 50000);
+        double endptA = 2.1;
+        double endptB = 15.5;
+        double tol = 0.000000001;
+        int N = 50000;
+
+        new BisectionMethod(endptA, endptB, tol, N);
     }
 }
