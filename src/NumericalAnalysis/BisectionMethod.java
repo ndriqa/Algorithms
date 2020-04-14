@@ -1,6 +1,8 @@
 package NumericalAnalysis;
-
-import java.util.function.Function;
+/**This class uses bisection method to find the root of a function.
+ *
+ * @author ndriqa
+ * */
 
 public class BisectionMethod {
     private double endpointA, endpointB;
